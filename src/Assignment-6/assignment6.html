@@ -12,6 +12,27 @@
 	<div id="container">
 
 	<!-- Start your code from here -->
+	<section  id="textcontent">
+		<div  id="hero-unit">
+		  <div id="headings">
+			<h2>Character :</h2>
+			<h2 id="charcount">0</h2>
+			<h2 id="threadsHeading">Threads :</h2>
+			<h2 id="threadcount">0</h2>
+		  </div>
+  
+		  <textarea placeholder="thread count is 275" required autofocus onkeyup="count()" id="textInput"> </textarea>
+		  <p id="error">Please enter some content</p>
+		  <button id="btn" type="submit">Threads</button>
+		</div>
+	  </section>
+  
+	  <section id="threads">
+		<p>Your threads will appear here</p>
+		<br />
+		<p>The character limit for each thread count is 275</p>
+	  
+	  </section>
 
 
 	<!-- End your code -->
@@ -20,6 +41,45 @@
 
 	<script type="text/javascript">
 	// write your javascript code here
+	const btn = document.getElementById("btn");
+const thread = document.getElementById("threads");
+const textinput = document.getElementById("textInput");
+const threadcount = document.getElementById('threadcount')
+const p = document.querySelectorAll('p')
+const size = 275
+
+function count() {
+  
+  document.getElementById("charcount").innerHTML = textinput.value.length;
+  threadcount.innerHTML=Math.ceil(textinput.value.length/size)
+}
+
+btn.addEventListener("click", function () {
+    let count = parseInt(document.getElementById('charcount').innerHTML);
+  
+    thread.style.background= 'transparent';
+    p.forEach((item)=> {
+        item.style.display='none'
+    })
+   
+    for (x=0 ; x<count ; x++){
+        if (x%275===0){
+            
+            let div =document.createElement('div')
+            div.classList='sample'
+            div.innerHTML = textinput.value.slice(x,x+275)
+            thread.appendChild(div)
+           
+            let a = document.createElement('a')
+            a.className='anchor'
+            a.innerHTML='X'
+            div.appendChild(a)
+        }
+    }
+
+});
+
+
 
 	</script>
 
